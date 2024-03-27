@@ -1,11 +1,12 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 # Hint: To visualize the data, you can import matplotlib.pyplot as plt
 
 # Step 1: Load the CSV file using numpy
 # HINT: Use np.loadtxt, specifying the path to your CSV, delimiter, and skiprows to ignore the header
 
-data = np.loadtxt('<PATH_TO_CSV>', delimiter=',', skiprows=1)
+data = np.loadtxt('simulated_temperatures.csv', delimiter=',', skiprows=1)
 
 # Extract the days and temperatures from the loaded data
 days = data[:, 0]
@@ -36,6 +37,24 @@ cold_days = days[temperatures < cold_threshold]
 # HINT: Use plt.plot for the temperatures, plt.scatter for marking hot and cold days
 
 # YOUR CODE HERE for visualization
+
+# Plot the temperatures across days
+plt.plot(days, temperatures, label='Daily Temperatures')
+
+# Mark the hot days
+plt.scatter(hot_days, temperatures[temperatures > hot_threshold], color='red', label='Hot Days')
+
+# Mark the cold days
+plt.scatter(cold_days, temperatures[temperatures < cold_threshold], color='blue', label='Cold Days')
+
+# Adding labels and title for clarity
+plt.xlabel('Day')
+plt.ylabel('Temperature')
+plt.title('Temperature Trends')
+plt.legend()
+
+# Show the plot
+plt.show()
 
 # Step 5: Write a summary of your findings
 # Create a string variable `summary` that includes the mean temperature, standard deviation,
